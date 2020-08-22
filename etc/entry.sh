@@ -18,6 +18,7 @@ bash "${STEAMAPPDIR}/srcds_run" -game "${STEAMAPP}" -console -autoupdate \
 	+clientport "${SRCDS_CLIENT_PORT}" \
 	+maxplayers "${SRCDS_MAXPLAYERS}" \
 	+map "${SRCDS_STARTMAP}" \
+	+sv_defaultgamemode "${SRCDS_GAMEMODE}" \
 	+sv_setsteamaccount "${SRCDS_TOKEN}" \
 	+rcon_password "${SRCDS_RCONPW}" \
 	+sv_password "${SRCDS_PW}" \

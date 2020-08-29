@@ -1,15 +1,17 @@
 #1/bin/bash
 bash "${STEAMCMDDIR}/steamcmd.sh" +login anonymous \
-	+force_install_dir "${STEAMAPPDIR}" \
-	+app_update "${STEAMAPPID}" \
+	+force_install_dir "${STEAMAPPDIR1}" \
+	+app_update "${STEAMAPPID1}" \
+	+force_install_dir "${STEAMAPPDIR2}" \
+	+app_update "${STEAMAPPID2}" \
 	+quit
 
 # Change hostname on first launch (you can comment this out if it has done it's purpose)
-sed -i -e 's/{{SERVER_HOSTNAME}}/'"${SRCDS_HOSTNAME}"'/g' "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg"
+sed -i -e 's/{{SERVER_HOSTNAME}}/'"${SRCDS_HOSTNAME}"'/g' "${STEAMAPPDIR1}/${STEAMAPP1}/cfg/server.cfg"
 
-bash "${STEAMAPPDIR}/srcds_run" -game "${STEAMAPP}" -console -autoupdate \
+bash "${STEAMAPPDIR1}/srcds_run" -game "${STEAMAPP1}" -console -autoupdate \
 	-steam_dir "${STEAMCMDDIR}" \
-	-steamcmd_script "${STEAMAPPDIR}/${STEAMAPP}_update.txt" \
+	-steamcmd_script "${STEAMAPPDIR1}/${STEAMAPP1}_update.txt" \
 	-usercon \
 	+fps_max "${SRCDS_FPSMAX}" \
 	-tickrate "${SRCDS_TICKRATE}" \
@@ -18,7 +20,7 @@ bash "${STEAMAPPDIR}/srcds_run" -game "${STEAMAPP}" -console -autoupdate \
 	+clientport "${SRCDS_CLIENT_PORT}" \
 	+maxplayers "${SRCDS_MAXPLAYERS}" \
 	+map "${SRCDS_STARTMAP}" \
-	+sv_defaultgamemode "${SRCDS_GAMEMODE}" \
+	+gamemode "${SRCDS_GAMEMODE}" \
 	+sv_setsteamaccount "${SRCDS_TOKEN}" \
 	+rcon_password "${SRCDS_RCONPW}" \
 	+sv_password "${SRCDS_PW}" \
